@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OLSIL TOUR | Agencia de Viajes Jalisco</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* --- ESTILOS GENERALES --- */
         :root {
@@ -28,8 +28,8 @@
 
         /* --- HEADER / BARRA DE NAVEGACIÓN --- */
         header {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: fixed;
             width: 100%;
             top: 0;
@@ -43,19 +43,25 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem 20px;
+            padding: 0.8rem 20px;
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 800;
             color: var(--primary-color);
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
         }
         
         .logo span { color: var(--secondary-color); }
 
-        .nav-links { display: flex; gap: 25px; }
+        /* Pequeño logo en la barra de navegación (opcional) */
+        .nav-logo-img { height: 40px; margin-right: 10px; width: auto; }
+
+
+        .nav-links { display: flex; gap: 25px; align-items: center; }
         .nav-links a { font-weight: 600; transition: color 0.3s; font-size: 0.9rem; text-transform: uppercase;}
         .nav-links a:hover { color: var(--secondary-color); }
 
@@ -68,45 +74,64 @@
         }
         .btn-cta-nav:hover { transform: translateY(-2px); background-color: #e09b00; }
 
-        /* --- HERO SECTION (Imagen Principal) --- */
+        /* --- HERO SECTION (Portada Principal) --- */
         .hero {
-            height: 85vh;
-            /* IMAGEN DE FONDO PRINCIPAL (Campo de Agave) */
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1570530732890-0b67568571bd?q=80&w=1920&auto=format&fit=crop');
+            min-height: 90vh; /* Un poco más alto */
+            /* IMAGEN DE FONDO: Campo de Agave */
+            background: linear-gradient(rgba(11, 79, 53, 0.5), rgba(11, 79, 53, 0.7)), url('https://images.unsplash.com/photo-1570530732890-0b67568571bd?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Efecto Parallax */
+            background-attachment: fixed;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--white);
-            padding: 0 20px;
-            margin-top: 60px;
+            padding: 80px 20px 20px; /* Padding superior para el header fijo */
+        }
+
+        .hero-content {
+            max-width: 800px;
+            /* Fondo semitransparente para que el texto y logo resalten más */
+            background: rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(3px);
+        }
+
+        /* ESTILOS PARA EL LOGO EN EL HERO */
+        .hero-logo {
+            max-width: 200px; /* Tamaño máximo del logo */
+            height: auto;
+            margin: 0 auto 25px auto; /* Centrado horizontal y margen abajo */
+            display: block;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3)); /* Sombra para que destaque */
         }
 
         .hero-content h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            line-height: 1.2;
+            line-height: 1.1;
+            font-weight: 800;
         }
         
         .hero-content span { color: var(--secondary-color); }
 
-        .hero p { font-size: 1.3rem; margin-bottom: 2.5rem; opacity: 0.9; }
+        .hero p { font-size: 1.3rem; margin-bottom: 2.5rem; opacity: 0.95; font-weight: 300;}
 
         .btn-hero {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 15px 35px;
+            background-color: var(--secondary-color); /* Cambié a dorado para más contraste */
+            color: var(--primary-color);
+            padding: 15px 40px;
             border-radius: 50px;
             font-weight: 700;
             font-size: 1.1rem;
             transition: all 0.3s;
-            border: 2px solid var(--primary-color);
+            border: none;
+            box-shadow: 0 5px 15px rgba(244, 169, 0, 0.4);
         }
-        .btn-hero:hover { background-color: transparent; border-color: var(--white); }
+        .btn-hero:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(244, 169, 0, 0.6); background-color: #ffbf00;}
 
         /* --- SECCIÓN DE TOURS --- */
         .events { max-width: 1200px; margin: 5rem auto; padding: 0 20px; }
@@ -116,9 +141,10 @@
             color: var(--primary-color);
             font-size: 2.5rem;
             position: relative;
+            font-weight: 700;
         }
         .section-title::after {
-            content: ''; display: block; width: 60px; height: 4px; background: var(--secondary-color); margin: 10px auto 0;
+            content: ''; display: block; width: 80px; height: 5px; background: var(--secondary-color); margin: 15px auto 0; border-radius: 10px;
         }
 
         .card-container {
@@ -132,193 +158,17 @@
             background: var(--white);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            width: 360px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            width: 380px;
             transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #eee;
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
-        .tour-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+        .tour-card:hover { transform: translateY(-10px); box-shadow: 0 20px 45px rgba(0,0,0,0.12); }
 
-        /* Estilo para las imágenes de las tarjetas */
+        /* ESTILO PARA LA IMAGEN DEL FLYER EN LA TARJETA */
         .card-img {
-            height: 250px; /* Aumenté un poco la altura para que el flyer se vea mejor */
+            height: 260px;
             background-color: #ddd;
             background-size: cover;
-            /* background-position: center;  <- Cambiado para el flyer */
-            background-position: top center; /* Para que se vea la parte de arriba del flyer */
-            position: relative;
-        }
-
-        .card-content { padding: 25px; }
-
-        .tag {
-            background-color: var(--secondary-color);
-            color: var(--primary-color);
-            padding: 5px 12px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        .card-title { margin: 10px 0; font-size: 1.5rem; color: var(--text-color); }
-
-        .card-details { list-style: none; margin-bottom: 25px; color: #555; font-size: 0.95rem; }
-        .card-details li { margin-bottom: 10px; display: flex; align-items: center; }
-        .card-details li::before { content: '✓'; color: var(--secondary-color); margin-right: 10px; font-weight: bold; }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
-
-        .price {
-            font-size: 1.6rem;
-            color: var(--primary-color);
-            font-weight: 800;
-        }
-        .price span { font-size: 0.9rem; font-weight: 400; color: #777; }
-
-        .btn-card {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: background-color 0.3s;
-        }
-        .btn-card:hover { background-color: var(--secondary-color); color: var(--primary-color); }
-
-        /* --- CONTACTO --- */
-        .contact {
-            background: linear-gradient(rgba(11, 79, 53, 0.9), rgba(11, 79, 53, 0.9)), url('https://images.unsplash.com/photo-1499678329028-101435549a4e?q=80&w=1920');
-            background-size: cover;
-            background-position: center;
-            color: var(--white);
-            padding: 5rem 20px;
-            text-align: center;
-        }
-
-        .contact h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-        .contact p { font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;}
-        
-        .whatsapp-btn-large {
-            display: inline-flex;
-            align-items: center;
-            background-color: #25D366;
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            text-decoration: none;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-        }
-        .whatsapp-btn-large:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6); }
-
-        /* --- FOOTER --- */
-        footer { background-color: #1a1a1a; color: #888; text-align: center; padding: 30px 20px; font-size: 0.9rem; margin-top: auto;}
-        footer p { margin: 5px 0; }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Menú móvil simplificado */
-            .tour-card { width: 100%; max-width: 400px; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <nav class="navbar">
-            <div class="logo">OLSIL <span>TOUR</span></div>
-            <div class="nav-links">
-                <a href="#inicio">Inicio</a>
-                <a href="#tours">Próximas Salidas</a>
-                <a href="#contacto" class="btn-cta-nav">Contacto</a>
-            </div>
-        </nav>
-    </header>
-
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1>Vive la Magia de <span>Jalisco</span></h1>
-            <p>Expertos en crear experiencias inolvidables. Tu próxima aventura comienza aquí.</p>
-            <a href="#tours" class="btn-hero">Ver Viajes Disponibles</a>
-        </div>
-    </section>
-
-    <section id="tours" class="events">
-        <h2 class="section-title">Próximas Aventuras</h2>
-        
-        <div class="card-container">
-            <div class="tour-card">
-                <div class="card-img" style="background-image: url('imagenes/flyer-posada-tequila.png');">
-                </div>
-
-                <div class="card-content">
-                    <span class="tag">📅 6 de Diciembre</span>
-                    <h3 class="card-title">Gran Posada TEQUILA</h3>
-                    <p style="margin-bottom: 15px; font-size: 0.9rem;">¡Descubre una experiencia inigualable que fusiona fiesta y cultura!</p>
-                    <ul class="card-details">
-                        <li>Transporte Redondo</li>
-                        <li>Shots Ilimitados & Tour Tequilera</li>
-                        <li>Comida: Birria y Agua Fresca</li>
-                        <li>Horario: 12:00 pm a 8:00 pm</li>
-                    </ul>
-                    <div class="card-footer">
-                        <div class="price">$1,250 <span>MXN/pax</span></div>
-                        <a href="https://wa.me/5213347162939?text=Hola%20OLSIL%20TOUR,%20quiero%20reservar%20lugares%20para%20la%20Posada%20Tequila%20del%206%20de%20Diciembre." class="btn-card" target="_blank">Reservar Lugar</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tour-card">
-                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1596131398982-f674fb68d6c7?q=80&w=600&auto=format&fit=crop'); background-position: center;"></div>
-                <div class="card-content">
-                    <span class="tag" style="background-color: #eee; color: #555;">📅 Próximamente</span>
-                    <h3 class="card-title">Escapada a Mazamitla</h3>
-                    <p style="margin-bottom: 15px; font-size: 0.9rem;">Disfruta del bosque, cabañas acogedoras y el clima de montaña.</p>
-                    <ul class="card-details">
-                        <li>Transporte Ejecutivo de Lujo</li>
-                        <li>Visita a Parque Mundo Aventura</li>
-                        <li>Tiempo libre en el centro</li>
-                        <li>Seguro de viajero incluido</li>
-                    </ul>
-                    <div class="card-footer">
-                        <div class="price">$950 <span>MXN/pax</span></div>
-                        <a href="https://wa.me/5213347162939?text=Hola,%20me%20interesa%20información%20sobre%20el%20tour%20a%20Mazamitla" class="btn-card" target="_blank">Más Info</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contacto" class="contact">
-        <h2>¿Tienes otro destino en mente?</h2>
-        <p>Armamos paquetes a tu medida. Contáctanos directamente a nuestro WhatsApp oficial.</p>
-        
-        <a href="https://wa.me/5213347162939" class="whatsapp-btn-large" target="_blank">
-            <span style="margin-right: 10px;">📱</span> Enviar WhatsApp al 33-4716-2939
-        </a>
-    </section>
-
-    <footer>
-        <div style="margin-bottom: 15px;">
-            <strong style="color: var(--secondary-color); font-size: 1.2rem;">OLSIL TOUR</strong>
-        </div>
-        <p>Tu agencia de confianza en Jalisco.</p>
-        <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2025 OLSIL TOUR. Todos los derechos reservados.</p>
-    </footer>
-
-</body>
-</html>
+            background-position: top
