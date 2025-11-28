@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OLSIL TOUR | Agencia de Viajes Jalisco</title>
+    <title>OLSIL TOUR | Agencia de Viajes Jalisco y Cabañas</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* --- ESTILOS GENERALES --- */
         :root {
             --primary-color: #0B4F35; /* Verde Agave Oscuro */
             --secondary-color: #F4A900; /* Dorado/Amarillo Flyer */
+            --cabin-color: #8B4513; /* Un color madera para las cabañas */
             --text-color: #333;
             --light-bg: #f4f7f6;
             --white: #ffffff;
@@ -57,7 +58,7 @@
         
         .logo span { color: var(--secondary-color); }
 
-        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-links a { font-weight: 600; transition: color 0.3s; font-size: 0.9rem; text-transform: uppercase;}
         .nav-links a:hover { color: var(--secondary-color); }
 
@@ -72,7 +73,7 @@
 
         /* --- HERO SECTION (Portada Principal) --- */
         .hero {
-            min-height: 90vh; /* Un poco más alto */
+            min-height: 90vh;
             /* IMAGEN DE FONDO: Campo de Agave */
             background: linear-gradient(rgba(11, 79, 53, 0.5), rgba(11, 79, 53, 0.7)), url('https://images.unsplash.com/photo-1570530732890-0b67568571bd?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
@@ -83,25 +84,24 @@
             justify-content: center;
             text-align: center;
             color: var(--white);
-            padding: 80px 20px 20px; /* Padding superior para el header fijo */
+            padding: 80px 20px 20px;
         }
 
         .hero-content {
             max-width: 800px;
-            /* Fondo semitransparente para que el texto y logo resalten más */
             background: rgba(0, 0, 0, 0.2);
             padding: 40px;
             border-radius: 20px;
             backdrop-filter: blur(3px);
         }
 
-        /* ESTILOS PARA EL LOGO EN EL HERO */
+        /* ESTILOS PARA EL LOGO EN EL HERO (Ruta con carpeta imagenes/) */
         .hero-logo {
-            max-width: 200px; /* Tamaño máximo del logo */
+            max-width: 200px;
             height: auto;
-            margin: 0 auto 25px auto; /* Centrado horizontal y margen abajo */
+            margin: 0 auto 25px auto;
             display: block;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3)); /* Sombra para que destaque */
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
         }
 
         .hero-content h1 {
@@ -117,7 +117,7 @@
         .hero p { font-size: 1.3rem; margin-bottom: 2.5rem; opacity: 0.95; font-weight: 300;}
 
         .btn-hero {
-            background-color: var(--secondary-color); /* Cambié a dorado para más contraste */
+            background-color: var(--secondary-color);
             color: var(--primary-color);
             padding: 15px 40px;
             border-radius: 50px;
@@ -129,8 +129,9 @@
         }
         .btn-hero:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(244, 169, 0, 0.6); background-color: #ffbf00;}
 
-        /* --- SECCIÓN DE TOURS --- */
-        .events { max-width: 1200px; margin: 5rem auto; padding: 0 20px; }
+        /* --- SECCIONES GENERALES (Tours y Cabañas) --- */
+        .section-container { max-width: 1200px; margin: 5rem auto; padding: 0 20px; }
+        
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
@@ -143,6 +144,11 @@
             content: ''; display: block; width: 80px; height: 5px; background: var(--secondary-color); margin: 15px auto 0; border-radius: 10px;
         }
 
+        /* Estilo diferente para el título de cabañas */
+        .cabin-title { color: var(--cabin-color); }
+        .cabin-title::after { background: var(--cabin-color); }
+
+
         .card-container {
             display: flex;
             justify-content: center;
@@ -150,6 +156,7 @@
             flex-wrap: wrap;
         }
 
+        /* --- TARJETAS (Tours y Cabañas) --- */
         .tour-card {
             background: var(--white);
             border-radius: 20px;
@@ -158,20 +165,23 @@
             width: 380px;
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column; /* Para que el footer siempre quede abajo */
         }
 
         .tour-card:hover { transform: translateY(-10px); box-shadow: 0 20px 45px rgba(0,0,0,0.12); }
 
-        /* ESTILO PARA LA IMAGEN DEL FLYER EN LA TARJETA */
         .card-img {
             height: 260px;
             background-color: #ddd;
             background-size: cover;
-            background-position: top center; /* Enfoca la parte superior del flyer */
+            background-position: center;
             position: relative;
         }
+        /* Clase específica para enfocar la parte superior del flyer */
+        .flyer-focus { background-position: top center; }
 
-        .card-content { padding: 30px; }
+        .card-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
 
         .tag {
             background-color: var(--secondary-color);
@@ -184,19 +194,26 @@
             display: inline-block;
             margin-bottom: 15px;
             letter-spacing: 1px;
+            align-self: flex-start;
         }
+        
+        /* Tag para cabañas */
+        .tag-cabin { background-color: var(--cabin-color); color: white; }
 
         .card-title { margin: 5px 0 15px; font-size: 1.6rem; color: var(--text-color); font-weight: 700; line-height: 1.3;}
 
-        .card-details { list-style: none; margin-bottom: 25px; color: #555; font-size: 1rem; }
+        .card-details { list-style: none; margin-bottom: 25px; color: #555; font-size: 1rem; flex-grow: 1;}
         .card-details li { margin-bottom: 12px; display: flex; align-items: center; }
         .card-details li::before { content: '✓'; color: var(--secondary-color); margin-right: 12px; font-weight: 900; font-size: 1.1rem;}
+        
+        /* Iconos para lista de cabañas */
+        .cabin-details li::before { content: '🌲'; color: var(--cabin-color); font-size: 1rem; }
 
         .card-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 20px;
+            margin-top: auto; /* Empuja el footer al final */
             padding-top: 25px;
             border-top: 2px solid #f0f0f0;
         }
@@ -208,6 +225,8 @@
             line-height: 1;
         }
         .price span { font-size: 0.9rem; font-weight: 500; color: #888; display: block; margin-top: 5px;}
+        
+        .price-cabin { color: var(--cabin-color); }
 
         .btn-card {
             background-color: var(--primary-color);
@@ -219,6 +238,9 @@
             box-shadow: 0 5px 15px rgba(11, 79, 53, 0.2);
         }
         .btn-card:hover { background-color: var(--secondary-color); color: var(--primary-color); box-shadow: 0 8px 20px rgba(244, 169, 0, 0.3); translateY(-2px);}
+        
+        .btn-cabin { background-color: var(--cabin-color); box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2); }
+        .btn-cabin:hover { background-color: #6b360e; color: white; }
 
         /* --- CONTACTO --- */
         .contact {
@@ -274,7 +296,8 @@
             </div>
             <div class="nav-links">
                 <a href="#inicio">Inicio</a>
-                <a href="#tours">Próximas Salidas</a>
+                <a href="#tours">Tours</a>
+                <a href="#cabanas">Cabañas</a>
                 <a href="#contacto" class="btn-cta-nav">Contacto</a>
             </div>
         </nav>
@@ -285,17 +308,20 @@
             <img src="imagenes/logo-olsil-tour.png" alt="Logo OLSIL TOUR Viajes" class="hero-logo">
             
             <h1>Vive la Magia de <span>Jalisco</span></h1>
-            <p>Expertos en crear experiencias inolvidables. Tu próxima aventura comienza aquí.</p>
-            <a href="#tours" class="btn-hero">Ver Viajes Disponibles</a>
+            <p>Expertos en viajes inolvidables y las mejores estancias.</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="#tours" class="btn-hero">Ver Tours</a>
+                <a href="#cabanas" class="btn-hero" style="background-color: var(--cabin-color); color: white; box-shadow: none;">Ver Cabañas</a>
+            </div>
         </div>
     </section>
 
-    <section id="tours" class="events">
-        <h2 class="section-title">Próximas Aventuras</h2>
+    <section id="tours" class="section-container">
+        <h2 class="section-title">Próximas Salidas</h2>
         
         <div class="card-container">
             <div class="tour-card">
-                <div class="card-img" style="background-image: url('imagenes/flyer-posada-tequila.png');">
+                <div class="card-img flyer-focus" style="background-image: url('imagenes/flyer-posada-tequila.png');">
                 </div>
 
                 <div class="card-content">
@@ -316,7 +342,7 @@
             </div>
 
             <div class="tour-card">
-                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1542729779-12d991269c4c?q=80&w=600&auto=format&fit=crop'); background-position: center;"></div>
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1542729779-12d991269c4c?q=80&w=600&auto=format&fit=crop');"></div>
                 <div class="card-content">
                     <span class="tag" style="background-color: #eee; color: #777;">📅 Próximamente 2025</span>
                     <h3 class="card-title">Escapada Mágica a Mazamitla</h3>
@@ -336,9 +362,54 @@
         </div>
     </section>
 
+    <section id="cabanas" class="section-container" style="background-color: #fcf8f5; padding-top: 3rem; padding-bottom: 3rem; border-radius: 30px;">
+        <h2 class="section-title cabin-title">Renta de Cabañas Exclusivas</h2>
+        <p style="text-align: center; max-width: 700px; margin: -2rem auto 3rem; color: #666;">Encuentra el refugio perfecto para tu próxima escapada. Opciones para parejas y familias en los mejores destinos.</p>
+        
+        <div class="card-container">
+            <div class="tour-card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1587061949409-02df41d5e562?q=80&w=600&auto=format&fit=crop');"></div>
+                <div class="card-content">
+                    <span class="tag tag-cabin">🌲 Ideal Parejas</span>
+                    <h3 class="card-title">Cabaña Alpina "El Refugio"</h3>
+                    <p style="margin-bottom: 20px; font-size: 0.95rem; color: #666;">Acogedora cabaña tipo A-frame en el corazón del bosque. Perfecta para una escapada romántica y desconexión total.</p>
+                    <ul class="card-details cabin-details">
+                        <li>Capacidad: 2 Personas</li>
+                        <li>Chimenea interior y carga de leña</li>
+                        <li>Jacuzzi privado con vista al bosque</li>
+                        <li>Cocineta equipada y asador</li>
+                    </ul>
+                    <div class="card-footer">
+                        <div class="price price-cabin">$2,200 <span>MXN / Noche (Aprox)</span></div>
+                        <a href="https://wa.me/5213347162939?text=Hola%20OLSIL%20TOUR,%20me%20interesa%20conocer%20disponibilidad%20de%20la%20Cabaña%20Alpina%20El%20Refugio." class="btn-card btn-cabin" target="_blank">Ver Disponibilidad</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tour-card">
+                 <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=600&auto=format&fit=crop');"></div>
+                <div class="card-content">
+                    <span class="tag tag-cabin">🏡 Familiar / Grupos</span>
+                    <h3 class="card-title">Residencia Bosque Azul</h3>
+                    <p style="margin-bottom: 20px; font-size: 0.95rem; color: #666;">Amplia y lujosa cabaña para disfrutar con toda la familia o amigos. Espacios abiertos y todas las comodidades.</p>
+                    <ul class="card-details cabin-details">
+                        <li>Capacidad: Hasta 8 Personas</li>
+                        <li>3 Habitaciones y 2 Baños completos</li>
+                        <li>Terraza gigante con asador y comedor</li>
+                        <li>Sala de juegos y WiFi de alta velocidad</li>
+                    </ul>
+                    <div class="card-footer">
+                        <div class="price price-cabin">$4,500 <span>MXN / Noche (Aprox)</span></div>
+                        <a href="https://wa.me/5213347162939?text=Hola%20OLSIL%20TOUR,%20me%20interesa%20información%20sobre%20la%20Cabaña%20Familiar%20Bosque%20Azul." class="btn-card btn-cabin" target="_blank">+ Info y Fotos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contacto" class="contact">
-        <h2>¿Tienes otro destino en mente?</h2>
-        <p>Armamos paquetes a tu medida. Contáctanos directamente a nuestro WhatsApp oficial.</p>
+        <h2>¿Buscas algo a tu medida?</h2>
+        <p>Ya sea un tour privado o una cabaña específica, contáctanos y te ayudamos a encontrar lo que necesitas.</p>
         
         <a href="https://wa.me/5213347162939" class="whatsapp-btn-large" target="_blank">
             <span>📱</span> Enviar WhatsApp al 33-4716-2939
@@ -347,7 +418,7 @@
 
     <footer>
         <strong>OLSIL TOUR</strong>
-        <p>Tu agencia de confianza para descubrir México.</p>
+        <p>Tu agencia de confianza en Jalisco. Tours y Experiencias Únicas.</p>
         <p style="margin-top: 25px; font-size: 0.8rem; opacity: 0.6;">&copy; 2025 OLSIL TOUR. Todos los derechos reservados.</p>
     </footer>
 
